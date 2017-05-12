@@ -4,8 +4,7 @@ class Controller_Api extends Controller
 {
 	public function action_listen()
 	{
-		$post_data = json_decode(@$_POST['data'], true);
-		return $this->api_data(true, "message", $post_data);
+		return $this->api_data(true, Lib_Min::listen(@$_POST['msg']));
 	}
 
 	protected function api_data($success, $message = "", $data = array())

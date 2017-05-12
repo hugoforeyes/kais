@@ -12,16 +12,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 well chatbox" id="chatbox">
-				<div class="message-container">
-					<div class="message you">
-					Hello
-					</div>
-				</div>
-				<div class="message-container">
-					<div class="message me">
-					Hi!
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -37,15 +27,19 @@
 		$("#message-box").focus();
 		$("#message-box").keyup(function(e) {
 			if (e.keyCode == 13 && !e.shiftKey) {
-				var msg = $(this).val();
+				var msg = $(this).val().trim();
+				$(this).val("");
+				if(!msg)
+					return;
 				add_message(msg, "me");
 				send_message(msg);
-				$(this).val("");
 			}
 		});
 	});
 
 	function add_message(msg, role) {
+		if (! msg)
+			return;
 		var html = '<div class="message-container">';
 		html += '<div class="message '+role+'">';
 		html += msg;
@@ -56,6 +50,8 @@
 	}
 
 	function send_message(msg) {
+		if (! msg)
+			return;
 		var formData = {msg: msg};
 		$.ajax({
 			url : "/kais/public/api/listen",
