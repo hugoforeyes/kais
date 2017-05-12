@@ -1,0 +1,26 @@
+.chatbox {
+	height: 500px; overflow-y: auto;
+}
+
+.message-container {
+	clear: both;
+	margin-bottom: 5px;
+	overflow: auto;
+}
+
+.message {
+	padding: 6px 12px;
+	display: inline-block;
+	border-radius: 11px;
+}
+
+.message.you {
+	background: #6868ec;
+	float: left;
+	color: white;
+}
+
+.message.me {
+	float: right;
+	background: #e2e2e2;
+}
