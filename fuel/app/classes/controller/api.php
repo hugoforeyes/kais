@@ -4,15 +4,15 @@ class Controller_Api extends Controller
 {
 	public function action_listen()
 	{
-		return $this->api_data(true, Lib_Min::listen(@$_POST['msg']));
+		$response = Lib_Friday::listen(@$_POST['msg']);
+		return $this->api_data(true, $response);
 	}
 
-	protected function api_data($success, $message = "", $data = array())
+	protected function api_data($success, $response = array())
 	{
 		$data = array();
 		$data['success'] = true;
-		$data['message'] = $message;
-		$data['data'] = $data;
+		$data['data'] = $response;
 		header('Content-Type: application/json');
 		return json_encode($data);
 	}

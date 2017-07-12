@@ -24,3 +24,161 @@
 	float: right;
 	background: #e2e2e2;
 }
+
+.website {
+	width: 100%;
+	height: 700px;
+	overflow: auto;
+	border: solid 2px gray;
+}
+
+.detail_element {
+	border-top: 1px solid;
+	margin-top: 3px;
+	padding-top: 3px;
+}
+
+.detail_element .seperate-attr {
+	border-top: 1px solid;
+	margin-top: 3px;
+	padding-top: 3px;
+}
+
+.js-loading-overlay {
+	position:absolute;
+	top:0; bottom:0;
+	left:0; right:0;
+
+	z-index:199;
+
+	background:#3b5dca;
+	opacity:0.5;
+
+	border-radius: inherit;
+}
+
+.rbtn-attr {
+	margin-top: 9px !important;
+}
+
+#element-wrapper {
+	height: 125px;
+	overflow: auto;
+}
+
+#div_ele {
+	height: 500px;
+	overflow: auto;
+}
+
+.property {
+	margin-bottom: 10px;
+}
+
+
+.info-box {
+	height: 332px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 10px;
+	border: 1px solid #9392b9;
+	margin: 10px 0px;
+	border-radius: 3px;
+	background: #2e2e3a;
+}
+
+/*Format for movie message*/
+.msg-movie-list .col-md-3 {
+	text-align: center;
+}
+
+.msg-movie-list .movie-box {
+	width: 180px;
+	text-align: center;
+	background: ghostwhite;
+	padding: 5px;
+	display: inline-block;
+	border-radius: 2px;
+	margin: 5px;
+	color: black;
+	border: 1px solid lightgrey;
+	height: 307px;
+	cursor: pointer;
+}
+
+
+.msg-movie-list .movie-box .movie-box-img {
+	position: relative;
+}
+
+.msg-movie-list .movie-box .movie-box-name {
+	color: #5f5f5f;
+	margin-top: 6px;
+}
+
+.msg-movie-list .movie-box .movie-box-release {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	padding: 4px 10px;
+	background: rgba(204, 100, 100, 0.8);
+	color: white;
+	font-weight: bold;
+	border-radius: 1px;
+	border: 1px solid white;
+}
+
+.msg-movie-list .movie-box .movie-box-number {
+	position: absolute;
+	top: 10px;
+	left: 15px;
+	padding: 4px 10px;
+	background: rgba(100, 204, 134, 0.8);
+	color: white;
+	font-weight: bold;
+	border-radius: 1px;
+	border: 1px solid white;
+}
+
+.movie-info {
+	margin-top: 8px;
+	margin-left: 12px;
+	color: aliceblue;
+}
+
+.movie-info .movie-detail-name-vi {
+	font-size: 24px;
+	color: bisque;
+}
+
+.movie-info .movie-detail-name-en {
+	font-size: 18px;
+	color: bisque;
+}
+
+.movie-info .movie-detail-info {
+	margin-top: 14px;
+	margin-bottom: 15px;
+	font-style: italic;
+}
+
+.movie-info .movie-detail-des {
+	height: 110px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.movie-info .movie-detail-date {
+	margin-top: 10px;
+	padding: 4px 8px;
+	background: coral;
+	display: inline-block;
+	border: 1px solid rgba(255, 228, 196, 0.5);
+	border-radius: 2px;
+	color: white;
+}
+
+.movie-detail-poster {
+	margin-top: 4px;
+	height: 300px;
+}
