@@ -6,6 +6,7 @@ class Lib_Friday
 	const TYPE_MOVIE_LIST = 2;
 	const TYPE_MOVIE_DETAIL = 3;
 	const TYPE_YOUTUBE = 4;
+	const TYPE_VIETLOTT = 5;
 
 	public static function listen($sentence)
 	{
@@ -29,12 +30,19 @@ class Lib_Friday
 			$youtube_id = Lib_Movie::get_trailer(0);
 			return self::_response("Trailer của phim đó nè!", self::TYPE_YOUTUBE, $youtube_id);
 		}
+
+		if($sentence == "vietlott") {
+			$data = Lib_Vietlott::get_mega6();
+			$msg = $data['info'].". Giá trị giải thưởng: ".$data['amount'];
+			return self::_response($msg, self::TYPE_VIETLOTT, json_encode($data, JSON_UNESCAPED_UNICODE));
+		}
 		return self::_response("Cậu nói gì tớ không hiểu, nhưng tớ vẫn yêu cậu! :)");
 	}
 
 	private static function _response($msg, $type = self::TYPE_TEXT, $data = array())
 	{
-		return array('message' => $msg, 'type' => $type, 'data' => $data);
+		$link = Lib_Fpt::text2speech($msg);
+		return array('message' => $msg, 'type' => $type, 'data' => $data, 'link' => $link);
 	}
 
 	// public static function curl_google($keyword){

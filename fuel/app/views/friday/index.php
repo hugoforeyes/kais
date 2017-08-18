@@ -6,6 +6,7 @@
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('style.css'); ?>
 	<?php echo Asset::js('jquery.min.js'); ?>
+	<?php echo Asset::js('storage.js'); ?>
 </head>
 <body>
 	<br/><br/><br/>
@@ -33,6 +34,11 @@
 					return;
 				add_message(msg, "me");
 				send_message(msg);
+				local_storage.set('history', msg);
+			} else if (e.keyCode == 38) {
+				var pre_message = local_storage.get('history') || "";
+				if(pre_message)
+					$(this).val(pre_message); 
 			}
 		});
 	});
@@ -60,6 +66,7 @@
 			success: function(response, textStatus, jqXHR)
 			{
 				add_message(response.data.message, "you");
+				read_message(response.data.link);
 				create_info_box(response.data);
 			},
 			error: function (jqXHR, textStatus, errorThrown)
@@ -67,6 +74,20 @@
 				alert('error');
 			}
 		});
+	}
+
+	function read_message(link, audio, repeat_count) {
+		if ( ! repeat_count)
+			repeat_count = 1;
+		if (repeat_count == 3)
+			return;
+		if ( ! audio) {
+			audio = document.createElement('audio');
+	    	audio.setAttribute('src', link);
+	    	audio.addEventListener("loadeddata",function() {
+	    		audio.play();
+	    	});
+		}
 	}
 
 	function create_info_box(data) {
@@ -119,6 +140,15 @@
 				html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+data.data+'?autoplay=1" frameborder="0" allowfullscreen></iframe>';
 				$("#chatbox").append(html);
 				$("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+				return;
+			case 5: //Vietlott
+				html = '<div style="margin-top:20px">';
+				data = JSON.parse(data.data);
+				for (var i = 1; i < 7; i++) {
+					html += '<span class="vietlott-num">'+data["num_"+i]+'</span>';
+				}
+				html += '</div>';
+				$("#chatbox").append(html);
 				return;
 		}
 	}

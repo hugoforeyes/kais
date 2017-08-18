@@ -182,3 +182,12 @@
 	margin-top: 4px;
 	height: 300px;
 }
+
+/* Format vietlott */
+.vietlott-num {
+	color: red;
+	border: 1px solid gray;
+	padding: 10px;
+	border-radius: 20px;
+	margin: 5px;
+}
