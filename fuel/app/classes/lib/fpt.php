@@ -31,6 +31,9 @@ class Lib_Fpt
 		    'voice: hatieumai',
 		    'prosody: 1',
 		];
-		return Lib_Fpt::get($url, $text, $headers)["async"];
+		$data = Lib_Fpt::get($url, $text, $headers);
+		if(isset($data["async"]))
+			return $data['async'];
+		return false;
 	}
 }
