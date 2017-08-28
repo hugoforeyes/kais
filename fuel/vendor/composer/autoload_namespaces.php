@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname(dirname($vendorDir));
 
 return array(
+    'Requests' => array($vendorDir . '/rmccue/requests/library'),
+    'PubNub\\' => array($vendorDir . '/pubnub/pubnub/src'),
     'Monolog' => array($vendorDir . '/monolog/monolog/src'),
     'Michelf' => array($vendorDir . '/michelf/php-markdown'),
 );

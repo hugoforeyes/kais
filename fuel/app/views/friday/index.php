@@ -7,6 +7,7 @@
 	<?php echo Asset::css('style.css'); ?>
 	<?php echo Asset::js('jquery.min.js'); ?>
 	<?php echo Asset::js('storage.js'); ?>
+	<?php echo Asset::js('pubnub.4.1.1.js'); ?>
 </head>
 <body>
 	<br/><br/><br/>
@@ -24,7 +25,11 @@
 </body>
 
 <script type="text/javascript">
+	var pubnub = null;
+	var channel_pubnub = "friday_web";
 	$(document).ready(function() {
+		init_pubnub();
+
 		$("#message-box").focus();
 		$("#message-box").keyup(function(e) {
 			if (e.keyCode == 13 && !e.shiftKey) {
@@ -42,6 +47,32 @@
 			}
 		});
 	});
+
+	function init_pubnub()
+	{
+		//Install pubnub
+		pubnub = new PubNub({
+		    subscribeKey: "sub-c-ee0cf98c-8bc8-11e7-99f6-f65693608d5b",
+		    ssl: true
+		});
+
+		pubnub.subscribe({channels: [channel_pubnub]});
+
+		pubnub.addListener({
+	    status: function(statusEvent) {
+	        if (statusEvent.category === "PNConnectedCategory")
+						console.log("Connect PubNub successfully!");
+	    },
+	    message: function(response) {
+				add_message(response.message.message, "you");
+				read_message(response.message.link);
+				create_info_box(response.message);
+	    },
+	    presence: function(presenceEvent) {}
+		});
+	}
+
+
 
 	function add_message(msg, role) {
 		if (! msg)
@@ -65,9 +96,10 @@
 			data : formData,
 			success: function(response, textStatus, jqXHR)
 			{
-				add_message(response.data.message, "you");
-				read_message(response.data.link);
-				create_info_box(response.data);
+				// If not use pubnub, enable this code
+				// add_message(response.data.message, "you");
+				// read_message(response.data.link);
+				// create_info_box(response.data);
 			},
 			error: function (jqXHR, textStatus, errorThrown)
 			{

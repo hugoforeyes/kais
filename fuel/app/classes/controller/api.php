@@ -50,6 +50,9 @@ class Controller_Api extends Controller
 	public function action_listen()
 	{
 		$response = Lib_Friday::listen(@$_POST['msg']);
+		//Use pubnub to send message
+		$pubnub = new Lib_Pubnub();
+		$pubnub->send_message($response);
 		return $this->api_data(true, $response);
 	}
 
